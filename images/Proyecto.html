@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Formulario Pedido</title>
+	<style>
+ 
+
+	.formulario {
+    display:block;
+    margin:0 auto;
+    width:510px;
+    color: #666666;
+    font-family:Arial;
+}
+label {
+    display:block;
+    margin-top:20px;
+    letter-spacing:1px;
+}
+
+form {
+    margin:0 auto;
+    width:400px;
+}
+
+select{
+	display:block;
+    margin-top:20px;
+    letter-spacing:1px;
+}
+
+input, textarea {
+    width:380px;
+    height:27px;
+    background:#40ede1;
+    border:2px solid #f6f6f6;
+    padding:10px;
+    margin-top:5px;
+    font-size:14px;
+    color:#ffffff;
+}
+ 
+textarea {
+    height:150px;
+}
+#submit {
+    width:85px;
+    height:35px;
+    border:none;
+    margin-top:20px;
+    cursor:pointer;
+}
+img{ 
+width:30%;
+align:center;}
+
+h2 {
+  color: #15EFF6;
+  font-weight: normal;
+  font-size: 35px;
+  font-family: Arial;
+  text-transform: uppercase;
+}
+
+#pedido{
+    
+    background-color: #15EFF6; 
+    border: none;
+    color: white;
+    padding: 20px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+	</style>
+    
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="estilos.css">
+	
+  <script type="text/javascript">
+    function mi_alerta () {
+alert ("Este seria el mensaje de alerta desde boton!");
+}
+</script>
+  <script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("Camisa");
+        element2 = document.getElementById("content2");
+        check2 = document.getElementById("Pantalon");
+        element3 = document.getElementById("content3");
+        check3 = document.getElementById("Chaqueta");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+        if (check2.checked) {
+            element2.style.display='block';
+        }
+        else {
+            element2.style.display='none';
+        }
+        if (check3.checked) {
+            element3.style.display='block';
+        }
+        else {
+            element3.style.display='none';
+        }
+
+
+
+    }
+
+</script>
+    <script>
+    function capturar()
+    {
+    	var porId=document.getElementById("Camisas").value;
+      var porId2=document.getElementById("Pantalones").value;
+      var porId3=document.getElementById("Chaquetas").value;
+
+    	  document.getElementById("resultado").innerHTML=" \
+        alert ("El precio del transporte no está incluido y dependerá del lugar de la entrega");
+        alert ("El precio total sería "+(porId*20000+porId2*30000+porId3*60000)+" Precio Camisa 20.000, Pantalon 30.000, Chaqueta 60.000");
+    	  }
+    </script>
+
+</head>
+<body>
+<div id="slider" class="flexslider" align="center">
+
+   
+        <img src="slider1.jpg">
+ 
+        </div>
+
+
+<h2 align="center"> Pedidos  </h2>
+<section class="formulario">
+	<form role="form">
+  <div class="form-group" id="formulario">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control" id="nombre"
+           placeholder="Introduce tu nombre" required>
+  </div>
+  <div class="form-group" id="formulario">
+    <label for="tipoID">Tipo de Identificación</label>
+     <select class="form-control">
+  <option selected value="0"> Elija una opción </option>
+  <option>Cédula de Ciudadanía</option>
+  <option>Cédula de Extranjería</option>
+  <option>Otro</option>
+</select>
+  </div>
+  <div class="form-group" id="formulario">
+    <label for="numeroID">Número Identificación</label>
+    <input type="text" class="form-control" id="numeroID"
+           placeholder="Introduce número de documento" required onkeypress="return valida(event)" minlength="5">
+  
+
+<script>
+function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+        
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
+</div>
+
+<div class="form-group" id="formulario">
+    <label for="tipoID">Tipo de ropa</label>
+     <label><input name="Camisa" id="Camisa" type="checkbox" class="form-control" onchange="javascript:showContent()"/> Camisa Formal</label>
+     <label><input name="Pantalon" id="Pantalon" type="checkbox" class="form-control" onchange="javascript:showContent()"/> Pantalon Formal</label>
+     <label><input name="Chaqueta" id="Chaqueta" type="checkbox" class="form-control" onchange="javascript:showContent()"/> Chaqueta</label>
+ 
+
+<div class="form-group" 	id="content" style="display: none;" id="formulario">
+ <label for="tipoID">Seleccione el numero de Camisas</label>
+ <input type="text" name="Camisas" id="Camisas" min="0" max="5" >    
+ </div>
+
+<div class="form-group" 	id="content2" style="display: none;" id="formulario">
+  <label for="tipoID">Seleccione el numero de Pantalones</label>
+  <input type="number" name="Pantalones" id="Pantalones" min="0" max="5" >
+ </div>
+
+ <div class="form-group" 	id="content3" style="display: none;" id="formulario">
+ <label for="tipoID">Seleccione el numero de Chaquetas</label>
+     <input type="number" name="Chaquetas" id="Chaquetas" min="0" max="5" >
+ </div>
+</div>
+
+<div class="form-group" id="formulario">
+    <label for="Fecha">Fecha</label>
+    <input type="datetime-local">
+  </div>	
+
+<div class="form-group" id="formulario">
+    <label for="Dirección">Dirección</label>
+    <input type="text" class="form-control" id="Dirección"
+           placeholder="Ingresa tu dirección" required>
+  
+<br>
+<br>
+<div id="resultado" align="center"></div>
+<input type="submit" id="pedido" value="Hacer Pedido"  onclick="capturar()">
+
+</form>
+</section>
+</body>
+</html>
